@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+/* We are given a DNA sequence and we have to extract the smallest sequence that starts with 'ATG' and ends with 'TAA'. There is a secondary condition that the 
+length of the sequence must be a mulitple of 3.
+*/
+
+int main()
+{
+    string seq = "AATTTTGGATGGATCGGTAAATCCCCTGACCCCTGGGGATTTTTCAAAGGTTAAATTTTTGGGGAAAA";
+    
+    int i=0; 
+    while(seq[i] != '\0'){
+        i++;
+    }
+    
+    int loop;
+    loop = i-3;
+    
+    char x[i];
+    int istart=0;
+    int iend=0;
+    
+    for(int j=0; j<loop; j++){
+        
+        x[0]= seq[j];
+        x[1]= seq[j+1];
+        x[2]= seq[j+2];
+        
+        if(x[0] == 'A'){
+            if(x[1] == 'T'){
+                if(x[2] == 'G'){
+                    istart = j;
+                }
+            }
+        }
+    }
+    
+    for(int k=istart; k<loop; k++){
+        x[0]= seq[k];
+        x[1]= seq[k+1];
+        x[2]= seq[k+2];
+        if(x[0] == 'T'){
+            if(x[1] == 'A'){
+                if(x[2] == 'A'){
+                    iend = k+2;
+                    break;
+                }
+            }
+        }
+        
+    }
+    
+if((iend-istart+1)%3==0){
+    for(int p=istart; p<=iend; p++){
+        cout<<seq[p];
+    }
+}
+    
+}
